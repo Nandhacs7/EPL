@@ -23,7 +23,7 @@ public class ChartServiceImpl implements ChartService{
     PolicyErrorDataRepository policyErrorDataRepository;
     
     
-/////////////////////////Receipt Info//////////////////////////////    
+  
     @Override
     public int getNoOfSuccessReceipts2DaysBefore() {
         int noOfSuccessReceipts = 0;
