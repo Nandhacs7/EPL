@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd ">
+
+   <context:component-scan base-package="com.rs.epl.NB.oementity"/>
+   <context:component-scan base-package="com.firstapex"/> 
+	<jpa:repositories base-package="com.rs.epl.NB.oemrepository" entity-manager-factory-ref="entityManagerFactory2" transaction-manager-ref="transactionManager2"/>
+     <tx:annotation-driven/> 
+      <!--<context:property-placeholder location="file:/D:/EPL-NB-PROPS/connection.properties" />-->
+     <bean id="dataSource2"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource" lazy-init="false">
+		<property name="driverClassName" value="${OEM.Driverclass}" />
+		<property name="url" value="${OEM.DriverURL}" />
+		<property name="username" value="${OEM.username}"/>
+		<property name="password" value="${OEM.password}"/>	
+	</bean>	
+	<bean id="entityManagerFactory2" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" lazy-init="false">
+         <!-- <property name="packagesToScan" value="com.fa.component.OEM.entity"/>
+		 <property name="packagesToScan" value="com.fa.component.policy.entity"/>  -->
+         <property name="packagesToScan">
+         <array>
+              <value>com.rs.epl.NB.oementity</value>
+           <!-- <value>com.rs.epl.NB.policyentity</value> -->
+         </array>
+        </property>
+        <property name="dataSource" ref="dataSource2"/>
+		<property name="jpaProperties">
+			<props>
+				  <!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->   
+				<prop key="hibernate.dialect">${OEM.hibernate.dialect}</prop>
+				<prop key="hibernate.default_schema">${OEM.username}</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop> 
+ 		        <prop key="hibernate.cache.use_second_level_cache">true</prop>
+		        <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+		         <prop key="hibernate.cache.use_query_cache">true</prop>
+		         <prop key="javax.persistence.sharedCache.mode">ALL</prop>  
+ 		         <prop key="net.sf.ehcache.configurationResourceName">/ramehcache.xml</prop> 
+			</props>
+		</property>
+	<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="false"/>
+				<property name="showSql" value="${OEM.showSql}"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="transactionManager2" class="org.springframework.orm.jpa.JpaTransactionManager" lazy-init="false">
+		<property name="entityManagerFactory" ref="entityManagerFactory2"/>
+	</bean>
+
+	<tx:annotation-driven  transaction-manager="transactionManager2"/> 
+	
+     <util:properties id="applicationProps" location="file:/D:/EPL-NB-PROPS/connection.properties" />
+    <context:property-placeholder properties-ref="applicationProps" />
+    <bean id="demoServiceXmlConfig" class="com.rs.epl.NB.serviceimpl.TaskSchedular" />
+    
+       <task:scheduled-tasks>
+        <task:scheduled ref="demoServiceXmlConfig" method="FGPushSchduler" fixed-delay="${EPLNB.scheduleTime}"></task:scheduled>
+    </task:scheduled-tasks> 
+
+
+ 
+
+<!--   <task:annotation-driven />
+	   <bean id="SchedulPush" class="com.rs.epl.NB.serviceimpl.TaskSchedular"></bean>  -->
+		
+		<!-- fixed-delay="${EPLNB.scheduleTime}" -->
+</beans>
+<!-- transaction-manager-ref="transactionManager2" -->
