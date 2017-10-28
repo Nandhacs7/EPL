@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
+
+<mvc:annotation-driven/>
+<context:component-scan base-package="com.rs.epl.NB.controllers"></context:component-scan>
+ <mvc:annotation-driven/>
+<!-- 	<context:component-scan base-package="com.fagroups.mavenspring.controllers.*"/> -->
+	
+<bean id="contentNegotiationManager"  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true" />
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="useJaf" value="false"/>
+        <property name="defaultContentType" value="text/html" />
+        <property name="mediaTypes">
+            <map>
+               <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+           </map>
+        </property>
+    </bean>
+	
+<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+<property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+	  <property name="order" value="1" />
+	 <property name="viewResolvers">
+        <list>
+      <bean id="viewResolver1" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+	    <property name="order" value="2"/>
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	 <bean id="viewResolver2" class="com.rs.epl.NB.viewresolvers.JsonViewResolver"/>           
+        </list>
+    </property>
+    </bean>
+
+  <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.8.2.201610040608-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+	</configs>
+	<autoconfigs>
+		<config>src/main/Webapps/WEB-INF/spring/rootContext.xml</config>
+		<config>src/main/Webapps/WEB-INF/spring/spring-security.xml</config>
+		<config>src/main/Webapps/WEB-INF/spring/applicationContext.xml</config>
+		<config>src/main/Webapps/WEB-INF/spring/Dispatcher-servlet.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
