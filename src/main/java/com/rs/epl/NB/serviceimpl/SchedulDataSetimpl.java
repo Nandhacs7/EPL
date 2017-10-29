@@ -253,7 +253,8 @@ public class SchedulDataSetimpl implements ScheduleDataSet {
 				
 			}
 		 }
-				else if("FAIL".equalsIgnoreCase(OmePolicy.getWebserviceStatus()) && 
+				else if(("FAIL".equalsIgnoreCase(OmePolicy.getWebserviceStatus()) 
+						|| "Receipt Fail".equalsIgnoreCase(OmePolicy.getWebserviceStatus()))&& 
 	  		    ("SUCCESS".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE()) || "CD Mode Payment".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())
 	  		    		|| "FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())) && 
 	  		      (null==OmePolicy.getMASTERUPDATE() || "RETRY".equalsIgnoreCase(OmePolicy.getMASTERUPDATE()))){
