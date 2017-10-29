@@ -266,18 +266,34 @@ public class SchedulDataSetimpl implements ScheduleDataSet {
 							Omepolicyrepo.MasterAbiblFail(Polno);
 							String err=Omepolicyrepo.selecterr(Polno);
 							if(null!=err){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err,"Y",Polno);									
+								if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+									Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err,"Y",Polno);	
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err,"Y",Polno);																		
+								}
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+									Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);	
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);									
+								}
 							}
 							break;
 						case "FORD":
 							Omepolicyrepo.MasterFordFail(Polno);
 							String err2=Omepolicyrepo.selecterr(Polno);
 							if(null!=err2){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err2,"Y",Polno);									
+								if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+									Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err2,"Y",Polno);	
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err2,"Y",Polno);																		
+								}
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+				                  if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	  Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);								
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								}
 							}
 							
 							break;
@@ -285,36 +301,75 @@ public class SchedulDataSetimpl implements ScheduleDataSet {
 							Omepolicyrepo.MasterHondaFail(Polno);
 							String err3=Omepolicyrepo.selecterr(Polno);
 							if(null!=err3){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err3,"Y",Polno);									
+				                 if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	 Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err3,"Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err3,"Y",Polno);																		
+								}
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+				                  if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	  Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								}
+								
 							}
 							break;
 						case "MAHINDRA":
 							Omepolicyrepo.MasterMahindraFail(Polno);
 							String err4=Omepolicyrepo.selecterr(Polno);
 							if(null!=err4){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err4,"Y",Polno);									
+				                 if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	 Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err4,"Y",Polno);	
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err4,"Y",Polno);	
+								}
+																
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+				                if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								}
+								
 							}
 							break;
 						case "MARUTI":
 							Omepolicyrepo.MasterMarutiFail(Polno);
 							String err5=Omepolicyrepo.selecterr(Polno);
 							if(null!=err5){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err5,"Y",Polno);									
+				               if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				            		Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err5,"Y",Polno);	
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err5,"Y",Polno);	
+								}
+															
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+				                if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								}
+								
 							}
 							break;
 						case "TATA":
 							Omepolicyrepo.MasterTataFail(Polno);
 							String err6=Omepolicyrepo.selecterr(Polno);
 							if(null!=err6){
-								Omepolicyrepo.UpateForFailedPolicy("FAIL",err6,"Y",Polno);									
+				                if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	Omepolicyrepo.UpateForFailedPolicy("Receipt Fail",err6,"Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL",err6,"Y",Polno);
+								}
+																	
 							}else{
-								Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+				                  if("FAIL".equalsIgnoreCase(OmePolicy.getRECEIPT_WEB_SERVICE())){
+				                	  Omepolicyrepo.UpateForFailedPolicy("Receipt Fail","N/A","Y",Polno);
+								}else{
+									Omepolicyrepo.UpateForFailedPolicy("FAIL","N/A","Y",Polno);
+								}
+								
 							}
 							break;
 						default:
