@@ -1,12 +1,12 @@
+
 $(document).ready(function() {
 //	alert("loaded");
-	
 	//loadBymanufuture();
 	 $('#more').hide(); 
 	 $('#retryonproduct').hide();
 	 $('#retrytype').hide();
 	 $('#resetdata').hide();
-	 
+	
 });
 
 
@@ -24,25 +24,55 @@ function changeinproperties(){
   {
     $.post('changeinprops', {switchvalue:"true"}, 
     function(response){
-//		alert("SUCCESS");
-
+    alert("Enabled in Properties");
 }).fail(function(){
-//	alert("FAIL");
-});     
-alert("Enabled in Properties");
-
-  } else {
-	     $.post('changeinprops', {switchvalue:"false"}, 
-	    		    function(response){
-//	    	               alert("SUCCESS");
-
-	    		}).fail(function(){	    			
-//    		      alert("FAIL");	    			
-	    		}); 
-       alert("Disabled In Properties");
+	alert("FAIL");
+});    
+}else if(!document.getElementById('property').checked){
+	$.post('changeinprops', {switchvalue:"false"}, 
+	  function(response){
+	    alert("Disabled In Properties");	    
+	    }).fail(function(){	    			
+    		alert("FAIL");	    			
+	    }); 	 
    }
 }
 
+$.get("swithchvalue", function(status){
+	if(status == 'true'){         
+			$(document).ready(function(){
+//				 $("[name='my-checkbox']").prop('checked', true);
+				 $("#property").bootstrapSwitch('state', true);
+//				 $("#property").bootstrapSwitch('disabled',true);
+			});
+	}
+//	 $('#property').prop('checked', true);
+	else{
+		 $("#property").bootstrapSwitch('state', false);
+	}
+	 
+});
+
+
+/*function documentFilter(trigger, target) {
+    var $target = $(target);
+
+    $(trigger).change(function () {
+        $target.toggle(this.checked);
+    });
+}
+
+
+$(document).on('click', '.sam', function() {
+  
+	alert("ram");
+  
+});*/
+
+/*$('#property').click(function() {
+    $("#property").toggle(this.checked);
+});
+*/
 
 $('#retryonproduct').change(function(){
 	homeproduct=$("#retryonproduct").val(); 
@@ -98,20 +128,22 @@ function changeinschedular(){
 	  {
 	     $.post('changeinschedular.json', {switchvalue2:"true"}, 
 	    function(response){
+	    	  alert("Enabled In Schedular");
 //	   alert("SUCCESS");
 	}).fail(function(){
-//		alert("FAIL");		
+		alert("FAIL");		
 	});    
 	     
-      alert("Enabled In Schedular");
+    
 	  } else {
 		  $.post('changeinschedular.json', {switchvalue2:"flase"}, 
 				    function(response){
+			  alert("Disabled In Schedular");
 //		    	 alert("SUCCESS");
 		}).fail(function(){
-//			alert("FAIL");		
+			alert("FAIL");		
 		});  
-	       alert("Disabled In Schedular");
+	      
 		   
 	}
 }

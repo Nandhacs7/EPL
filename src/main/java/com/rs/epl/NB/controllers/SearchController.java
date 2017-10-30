@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.firstapex.rs.epl.NB.common.ENEplProperties;
@@ -23,6 +24,7 @@ public class SearchController {
 
 	
 	@RequestMapping(value = "/changeinprops", method = RequestMethod.POST)
+	@ResponseBody
 	public String switchchange(HttpServletRequest request,@RequestParam("switchvalue") String switchval) throws ConfigurationException {
 		
 		String conn=ENEplProperties.getEnEplProperties().getConnectionstring();

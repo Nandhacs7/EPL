@@ -101,11 +101,13 @@
 			<div class="col-xs-12 col-sm-12 ">
 				<div class="col-xs-12 col-sm-6">
 				<h5 class="text-center hri" >TURN OFF SWITCH FROM PROPERTIES</h5>
-                 <input type="checkbox" id="property" name="my-checkbox" checked class="switchadd" onchange="changeinproperties();">
+                 <input type="checkbox" id="property" name="my-checkbox"  class="switchadd" onchange="changeinproperties();">
+                 <!-- onchange="changeinproperties('har');" -->
 				</div>
 				<div class="col-xs-12 col-sm-6">
 				<h5 class="text-center hri">TURN OFF SWITCH FROM SCHEDULAR</h5>
                  <input type="checkbox"  id="schedular" name="my-checkbox" checked class="switchadd" onchange="changeinschedular();">
+                 <!-- onchange="changeinschedular();" -->
 				</div>
 			</div>	
 		</div>	

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.firstapex.rs.epl.NB.common.ENEplProperties;
 import com.rs.epl.NB.dtoresponse.DataTableDto;
 import com.rs.epl.NB.dtoresponse.StatusDto;
 import com.rs.epl.NB.eappsrepo.EappPolicy;
@@ -206,6 +208,20 @@ public class Eplsearch {
 	
 	
 	
+	@RequestMapping(value = "/swithchvalue", method = RequestMethod.GET)
+	@ResponseBody
+	public String switchchange(HttpServletRequest request) {
+	  String conn=ENEplProperties.getEnEplProperties().getConnectionstring();  
+		if(conn.contains("emotorcon")){
+			boolean switchval=ENEplProperties.getEnEplProperties().isEappflag();
+			String str = String.valueOf(switchval);
+			return str;			
+		}else{			
+			boolean switchval=ENEplProperties.getEnEplProperties().isFlag();
+			String str = String.valueOf(switchval);
+			return str;
+		}		
+	}		
 	
 //		@RequestMapping(value = "/oemdata", method = RequestMethod.POST)
 //	public String getPolicyDataByPolicyNoOrReceisptNooem(@RequestParam("start") String start,
